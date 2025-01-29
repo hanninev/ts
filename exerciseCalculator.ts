@@ -1,3 +1,5 @@
+import { isNotNumber } from "./utils";
+
 interface ExerciseResult {
     periodLength: number;
     trainingDays: number;
@@ -48,9 +50,18 @@ if (args.length < 2) {
 
 const [targetArg, ...exerciseArgs] = args;
 
+if (isNotNumber(targetArg)) {
+    console.error('Target value must be a valid number!');
+    process.exit(1);
+  }
+
 const target = Number(targetArg);
 
 const dailyExercises: number[] = exerciseArgs.map(val => {
+    if (isNotNumber(val)) {
+        console.error(`Daily exercise value must be a valid number!`);
+        process.exit(1);
+      }
   return Number(val);
 });
 

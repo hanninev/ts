@@ -1,3 +1,5 @@
+import { isNotNumber } from "./utils";
+
 function calculateBmi(heightCm: number, weightKg: number): string {
     const heightM = heightCm / 100;
       const bmi = weightKg / (heightM * heightM);
@@ -19,6 +21,11 @@ function calculateBmi(heightCm: number, weightKg: number): string {
   }
 
   const [heightArg, weightArg] = args;
+
+  if (isNotNumber(heightArg) || isNotNumber(weightArg)) {
+    console.error('Provided values must be valid numbers!');
+    process.exit(1);
+  }
   
   const heightInCm = Number(heightArg);
   const weightInKg = Number(weightArg);
