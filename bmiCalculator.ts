@@ -1,6 +1,6 @@
 import { isNotNumber } from "./utils";
 
-function calculateBmi(heightCm: number, weightKg: number): string {
+export function calculateBmi(heightCm: number, weightKg: number): string {
     const heightM = heightCm / 100;
       const bmi = weightKg / (heightM * heightM);
   
@@ -15,6 +15,7 @@ function calculateBmi(heightCm: number, weightKg: number): string {
     }
   }
 
+  if (require.main === module) {
   const args = process.argv.slice(2);
   if (args.length < 2) {
     console.error('Please provide two arguments');
@@ -31,3 +32,4 @@ function calculateBmi(heightCm: number, weightKg: number): string {
   const weightInKg = Number(weightArg);
   
   console.log(calculateBmi(heightInCm, weightInKg));
+}
