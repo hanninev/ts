@@ -40,8 +40,19 @@ interface ExerciseResult {
       average
     };
   }
-  
-const dailyExercises = [3, 0, 2, 4.5, 0, 3, 1]; 
-const target = 2;
+
+const args = process.argv.slice(2);
+if (args.length < 2) {
+  console.error('Please provide two arguments');
+}
+
+const [targetArg, ...exerciseArgs] = args;
+
+const target = Number(targetArg);
+
+const dailyExercises: number[] = exerciseArgs.map(val => {
+  return Number(val);
+});
+
 console.log(calculateExercises(dailyExercises, target));
   

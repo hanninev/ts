@@ -7,13 +7,20 @@ function calculateBmi(heightCm: number, weightKg: number): string {
     } else if (bmi >= 18.5 && bmi < 25) {
       return `Normal range`;
     } else if (bmi >= 25 && bmi < 30) {
-      return `More over normal range`;
+      return `Overweight`;
     } else {
       return `Very much above normal range`;
     }
   }
+
+  const args = process.argv.slice(2);
+  if (args.length < 2) {
+    console.error('Please provide two arguments');
+  }
+
+  const [heightArg, weightArg] = args;
   
-  const heightInCm = 180;
-  const weightInKg = 74;
+  const heightInCm = Number(heightArg);
+  const weightInKg = Number(weightArg);
   
   console.log(calculateBmi(heightInCm, weightInKg));
