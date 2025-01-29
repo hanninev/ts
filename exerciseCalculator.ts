@@ -43,6 +43,7 @@ interface ExerciseResult {
     };
   }
 
+if (require.main === module) {
 const args = process.argv.slice(2);
 if (args.length < 2) {
   console.error('Please provide two arguments');
@@ -66,4 +67,4 @@ const dailyExercises: number[] = exerciseArgs.map(val => {
 });
 
 console.log(calculateExercises(dailyExercises, target));
-  
+}
