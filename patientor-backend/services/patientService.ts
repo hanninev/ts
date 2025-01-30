@@ -8,9 +8,14 @@ export const getPatients = (): NonSensitivePatientEntry[] => {
     return patients.map(p => ({ id: p.id, name: p.name, dateOfBirth: p.dateOfBirth, gender: p.gender, occupation: p.occupation }));
 };
 
+export const getPatientsWithAllInfo = (): PatientEntry[] => {
+    return patientData;
+};
+
 export const addPatient = (entry: NewPatientEntry): PatientEntry => {
     const newPatientEntry = {
         id: uuid(),
+        entries: [],
         ...entry
     };
 

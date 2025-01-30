@@ -1,5 +1,5 @@
 import express from 'express';
-import { getPatients, addPatient } from '../services/patientService';
+import { getPatients, addPatient, getPatientsWithAllInfo } from '../services/patientService';
 import toNewPatientEntry from '../utils';
 import { z } from 'zod';
 
@@ -7,6 +7,23 @@ const router = express.Router();
 
 router.get('/', (_req, res) => {
     res.send(getPatients());
+});
+
+router.get('/:id', (req, res) => {
+    const { id } = req.params;
+
+    const patient = getPatientsWithAllInfo().find((p) => p.id === id);
+
+    if (!patient) {
+        return res.status(404).json({ error: 'Patient not found' });
+    }
+
+    const patientWithEntries = {
+        ...patient,
+        entries: patient.entries || [],
+    };
+
+    return res.json(patientWithEntries);
 });
 
 router.post('/', (req, res) => {
